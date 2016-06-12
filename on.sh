@@ -9,7 +9,7 @@ case "$(sudo /opt/vc/bin/tvservice -s | grep -c 0x120002)" in
    ;;
 esac
 
-touch /home/pi/tvon
+touch /opt/rec/tvon
 
 case "$(pidof hello_font.bin | wc -w)" in
 0) /opt/rec/hello_font.bin > hf.log 2>hf.err &
