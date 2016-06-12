@@ -1,0 +1,2 @@
+This file is TOUCHED whenever HDMI is turned on. A python script polls the 
+file modification date and turns HDMI off after some time.
