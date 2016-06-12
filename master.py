@@ -5,7 +5,7 @@ import os.path, time, subprocess
 onTime = 320
 timePassed = 0
 newTime = 0
-turnedOff = 1
+turnedOff = 0
 
 while True:
 	newTime = os.path.getmtime("/opt/rec/tvon")
