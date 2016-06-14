@@ -32,7 +32,7 @@
   fwrite($myfile, $txt);
   $txt = "raz#$raz#Rollladen AZ: " . round($raz*100,0) . " % offen #255#255#255#5\n";
   fwrite($myfile, $txt);
-  $txt = "lgf#$lgf#Licht Flutlicht: " . booltx($lgf) . " %\n";
+  $txt = "lgf#$lgf#Licht Flutlicht: " . booltx($lgf) . "\n";
   fwrite($myfile, $txt);
   fclose($myfile);
 
