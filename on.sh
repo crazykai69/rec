@@ -13,14 +13,14 @@ esac
 touch /opt/rec/tvon
 
 case "$(pidof hello_font.bin | wc -w)" in
-0) /opt/rec/hello_font.bin > hf.log 2>hf.err &
+0) /opt/rec/hello_font.bin > /dev/null 2>/dev/null &
    ;;
 *) # all ok
    ;;
 esac
 
 case "$(pidof -x master.py | wc -w)" in
-0) sudo /opt/rec/master.py > mpy.log 2>mpy.err &
+0) sudo /opt/rec/master.py > /dev/null 2>/dev/null &
    ;;
 *) ;;
 esac
