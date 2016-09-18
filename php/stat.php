@@ -3,6 +3,7 @@
   $fwc = 0;
   $ftl = 0;
   $ftr = 0;
+  $fgz = 0;
   $rki = 0.0;
   $raz = 0.0;
   $lgf = "";
@@ -46,7 +47,7 @@
   echo $txt . "<br>";
   fclose($myfile);
 
-  if ($fwc == 0 && $ftl == 0 && $ftr == 0) 
+  if ($fwc == 0 && $ftl == 0 && $ftr == 0 && $fgz == 0) 
   {
 	$txt = "OK\n";
 	$frm = "0#255#0#10\n";
