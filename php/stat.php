@@ -10,6 +10,7 @@
   if ( isset( $_GET["fwc"] ) ) $fwc = $_GET["fwc"];
   if ( isset( $_GET["ftl"] ) ) $ftl = $_GET["ftl"];
   if ( isset( $_GET["ftr"] ) ) $ftr = $_GET["ftr"];
+  if ( isset( $_GET["fgz"] ) ) $ftr = $_GET["fgz"];
   if ( isset( $_GET["raz"] ) ) $raz = $_GET["raz"];
   if ( isset( $_GET["rki"] ) ) $rki = $_GET["rki"];
   if ( isset( $_GET["lgf"] ) ) $lgf = $_GET["lgf"];
@@ -28,12 +29,21 @@
   $txt = "ftr#$ftr#Terasse rechts: " . wintx($ftr) . "\n";
   fwrite($myfile, $txt);
   echo $txt . "<br>";
+  if ( isset( $_GET["fgz"] ) )
+  {
+    $txt = "fgz#$fgz#Gästezimmer: " . wintx($fgz) . "\n";
+    fwrite($myfile, $txt);
+    echo $txt . "<br>";
+  }
   $txt = "rki#$rki#Rollladen Kind: " . round($rki*100,0) . " % offen #255#255#255#5\n";
   fwrite($myfile, $txt);
+  echo $txt . "<br>";
   $txt = "raz#$raz#Rollladen AZ: " . round($raz*100,0) . " % offen #255#255#255#5\n";
   fwrite($myfile, $txt);
+  echo $txt . "<br>";
   $txt = "lgf#$lgf#Licht Flutlicht: " . booltx($lgf) . "\n";
   fwrite($myfile, $txt);
+  echo $txt . "<br>";
   fclose($myfile);
 
   if ($fwc == 0 && $ftl == 0 && $ftr == 0) 
