@@ -32,7 +32,7 @@
   echo $txt . "<br>";
   if ( isset( $_GET["fgz"] ) )
   {
-    $txt = "fgz#$fgz#Gästezimmer: " . wintx($fgz) . "\n";
+    $txt = "fgz#$fgz#Gaestezimmer: " . wintx($fgz) . "\n";
     fwrite($myfile, $txt);
     echo $txt . "<br>";
   }
