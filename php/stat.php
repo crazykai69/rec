@@ -11,6 +11,8 @@
   if ( isset( $_GET["fwc"] ) ) $fwc = $_GET["fwc"];
   if ( isset( $_GET["ftl"] ) ) $ftl = $_GET["ftl"];
   if ( isset( $_GET["ftr"] ) ) $ftr = $_GET["ftr"];
+  if ( isset( $_GET["fto"] ) ) $fto = $_GET["fto"];
+  if ( isset( $_GET["ftw"] ) ) $ftw = $_GET["ftw"];
   if ( isset( $_GET["fgz"] ) ) $fgz = $_GET["fgz"];
   if ( isset( $_GET["raz"] ) ) $raz = $_GET["raz"];
   if ( isset( $_GET["rki"] ) ) $rki = $_GET["rki"];
@@ -33,6 +35,12 @@
   $txt = "fgz#$fgz#Gaestezimmer: " . wintx($fgz) . "\n";
   fwrite($myfile, $txt);
   echo $txt . "<br>";
+
+  $txt = "ftw#$fgz#Terrasse West: " . wintx($ftw) . "\n";
+  fwrite($myfile, $txt);
+  $txt = "fto#$fgz#Terrasse Ost: " . wintx($fto) . "\n";
+  fwrite($myfile, $txt);
+
   $txt = "rki#$rki#Rollladen Kind: " . round($rki*100,0) . " % offen #255#255#255#5\n";
   fwrite($myfile, $txt);
   echo $txt . "<br>";
@@ -44,7 +52,7 @@
   echo $txt . "<br>";
   fclose($myfile);
 
-  if ($fwc == 0 && $ftl == 0 && $ftr == 0 && $fgz == 0) 
+  if ($fwc == 0 && $ftl == 0 && $ftr == 0 && $fgz == 0 && $ftl==0 && $fto=00) 
   {
 	$txt = "OK\n";
 	$frm = "0#255#0#10\n";
