@@ -1,7 +1,7 @@
 #!/bin/bash
 cd /opt/rec
 
-case "$(sudo /opt/vc/bin/tvservice -s | grep -c 0x120002)" in
+case "$(sudo /opt/vc/bin/tvservice -s | grep -c off)" in
 1) echo "HDMI is off, turning on"
    sudo /opt/vc/bin/tvservice -p
    sleep 1
