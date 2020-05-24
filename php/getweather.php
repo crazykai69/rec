@@ -1,10 +1,12 @@
 <?php
-echo "<html><body>GetWeather<hr>";
+echo "<html><body>GetWeather V2<hr>";
 $doc = new DOMDocument();
 
-shell_exec( 'sudo wget http://192.168.178.70/livedata.htm' );
+//shell_exec( 'sudo wget http://weather/livedata.htm' );
 
-$htmlLoaded = $doc->loadHTMLFile( 'livedata.htm' );
+//$htmlLoaded = $doc->loadHTMLFile( 'livedata.htm' );
+
+$htmlLoaded = $doc->load( 'http://192.168.178.41/livedata.htm' );
 
 $url = "http://www.kai-merklein.de/avrtl/updweather.php?station=1";
 
