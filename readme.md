@@ -1,7 +1,8 @@
 ## Startup
 In /etc/rc.local:
 ```
-sudo -u pi -i /home/pi/temp1.sh &
+# sudo -u pi -i /home/pi/temp1.sh &
+sudo -u pi -i /opt/rec/run_hello_font_from_rc.local.sh &
 ```
 In crontab:
 ```
