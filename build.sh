@@ -1,6 +1,6 @@
 git pull
 
-cp main.c /opt/vc/src/hello_pi/hello_font/
+cp main_raspient.c /opt/vc/src/hello_pi/hello_font/main.c
 
 cd /opt/vc/src/hello_pi/hello_font/
 
