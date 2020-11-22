@@ -35,7 +35,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "vgfont.h"
 #include <time.h>
 
-int getTemp(char *tempVal, char *freezerStat, uint32_t *freezerStatColor, char *co2Val);
+int getTemp(char *tempVal);
 
 void render_subtitle(GRAPHICS_RESOURCE_HANDLE img, const char *text, const uint32_t textColor, const uint32_t rightJustify, const uint32_t text_size, const uint32_t y_offset)
 {
@@ -103,21 +103,13 @@ int main(void)
 
   graphics_display_resource(img, 0, LAYER, 0, 0, GRAPHICS_RESOURCE_WIDTH, GRAPHICS_RESOURCE_HEIGHT, VC_DISPMAN_ROT0, 1);
 
-  uint32_t text_size = 70;
+  uint32_t text_size = 100;
   char timeOld[25];
 
   char tempVal[25];
   memset(tempVal, 0, 25);
 
-  char freezerStat[25];
-  memset(freezerStat, 0, 25);
-
-  char co2Val[25];
-  memset(co2Val, 0, 25);
-
-  uint32_t freezerStatCol = 0;
-
-  getTemp(tempVal, freezerStat, &freezerStatCol, co2Val);
+  getTemp(tempVal);
 
   while (1)
   {
@@ -141,15 +133,15 @@ int main(void)
 
       //      render_subtitle(img, *text, textColor, rightJustify, text_size, y_offset)
 
-      render_subtitle(img, text, 0, 1, 70, height - 70 - 20);    // Time
-      render_subtitle(img, tempVal, 0, 0, 70, height - 70 - 20); // Temperature
+      render_subtitle(img, text, 0, 1, text_size, height - text_size - 20);    // Time
+      render_subtitle(img, tempVal, 0, 0, text_size, height - text_size - 20); // Temperature
       // render_subtitle(img, date,        0, 0, text_size, height-text_size-20);                  // Date
       // render_subtitle(img, co2Val,      0, 0, text_size, height-(text_size*2)-40);              // CO2
       // render_subtitle(img, freezerStat, freezerStatCol, 0, text_size, height-(text_size*3)-60); // Freezer
 
       graphics_update_displayed_resource(img, 0, 0, 0, 0);
 
-      getTemp(tempVal, freezerStat, &freezerStatCol, co2Val);
+      getTemp(tempVal);
 
       strcpy(timeOld, text);
     }
@@ -161,7 +153,7 @@ int main(void)
   return 0;
 }
 
-int getTemp(char *tempVal, char *freezerStat, uint32_t *freezerStatColor, char *co2Val)
+int getTemp(char *tempVal)
 {
   int socket_desc;
   struct sockaddr_in server;
@@ -190,7 +182,7 @@ int getTemp(char *tempVal, char *freezerStat, uint32_t *freezerStatColor, char *
   }
 
   //Send HTTP message
-  message = "GET /dashboard/ajaxdata.php?format=2&tempOnly=1 HTTP/1.1\r\nHost: www.kai-merklein.de\r\n\r\n";
+  message = "GET /dashboard/ajaxdata.php?format=3&tempOnly=1 HTTP/1.1\r\nHost: www.kai-merklein.de\r\n\r\n";
 
   if (send(socket_desc, message, strlen(message), 0) < 0)
   {
@@ -206,25 +198,7 @@ int getTemp(char *tempVal, char *freezerStat, uint32_t *freezerStatColor, char *
 
   realContent = strstr(server_reply, "\r\n\r\n") + 4;
 
-  // Innen, aussen, Pool
-  tok = strtok(realContent, "#");
-  if (tok)
-  {
-    strcpy(tempVal, tok);
-
-    // Freezer
-    tok = strtok(NULL, "#"); // Temp + Stat
-    if (tok)
-      strcpy(freezerStat, tok);
-    tok = strtok(NULL, "#"); // Color: 0: normal, 1: gruen, 2: rot
-    if (tok)
-      *freezerStatColor = atoi(tok);
-
-    // CO2
-    tok = strtok(NULL, "#"); // Temp + Stat
-    if (tok)
-      strcpy(co2Val, tok);
-  }
+  strcpy(tempVal, realContent);
 
   close(socket_desc);
 
