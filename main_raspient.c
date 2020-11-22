@@ -103,7 +103,7 @@ int main(void)
 
   graphics_display_resource(img, 0, LAYER, 0, 0, GRAPHICS_RESOURCE_WIDTH, GRAPHICS_RESOURCE_HEIGHT, VC_DISPMAN_ROT0, 1);
 
-  uint32_t text_size = 70;
+  //uint32_t text_size = 70;
   char timeOld[25];
 
   char tempVal[25];
