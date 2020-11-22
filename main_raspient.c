@@ -103,7 +103,7 @@ int main(void)
 
   graphics_display_resource(img, 0, LAYER, 0, 0, GRAPHICS_RESOURCE_WIDTH, GRAPHICS_RESOURCE_HEIGHT, VC_DISPMAN_ROT0, 1);
 
-  //uint32_t text_size = 70;
+  uint32_t text_size = 70;
   char timeOld[25];
 
   char tempVal[25];
@@ -112,12 +112,12 @@ int main(void)
   char freezerStat[25];
   memset(freezerStat, 0, 25);
 
-  //  char co2Val[25];
-  //  memset(co2Val,0,25);
+  char co2Val[25];
+  memset(co2Val, 0, 25);
 
-  //  uint32_t freezerStatCol = 0;
+  uint32_t freezerStatCol = 0;
 
-  //  getTemp(tempVal,freezerStat,&freezerStatCol,co2Val);
+  getTemp(tempVal, freezerStat, &freezerStatCol, co2Val);
 
   while (1)
   {
